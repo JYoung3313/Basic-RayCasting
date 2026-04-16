@@ -14,4 +14,4 @@ struct HitInfo {
 };
 
 // GetIntersetion prototype
-HitInfo getDDAIntersection(Ray& ray, float angle, int map[5][5]);
+HitInfo getDDAIntersection(Ray& ray, float angle, int map[MAP_HEIGHT][MAP_WIDTH]);

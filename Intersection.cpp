@@ -38,7 +38,7 @@ Vec2D map_Pos(Ray& ray) {
 
 // Simple DDA Loop
 void mainLoop(HitInfo& info, Vec2D& sideDist, Ray& ray, int& stepX,
-    int& stepY, int& mapX, int& mapY, int map[5][5]) {
+    int& stepY, int& mapX, int& mapY, int map[MAP_HEIGHT][MAP_WIDTH]) {
     
     while (!info.hit) {
         if (sideDist.x < sideDist.y) {
@@ -52,7 +52,8 @@ void mainLoop(HitInfo& info, Vec2D& sideDist, Ray& ray, int& stepX,
         }
 
         // Bounds check and wall hit
-        if (mapX < 0 || mapX >= 5 || mapY < 0 || mapY >= 5) return;
+        if (mapX < 0 || mapX >= MAP_WIDTH || mapY < 0 || mapY >= MAP_HEIGHT) return;
+        
         if (map[mapY][mapX] > 0) {
             info.hit = true;
             info.mapPos = {mapX, mapY};
@@ -69,7 +70,7 @@ void mainLoop(HitInfo& info, Vec2D& sideDist, Ray& ray, int& stepX,
     }
 }
 
-HitInfo getDDAIntersection(Ray& ray, float angle, int map[5][5]) {
+HitInfo getDDAIntersection(Ray& ray, float angle, int map[MAP_HEIGHT][MAP_WIDTH]) {
     // init HitInfo
     HitInfo info = {false, 0.0f, {0, 0}, 0};
     

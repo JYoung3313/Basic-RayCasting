@@ -20,10 +20,16 @@
 // #define CELL_SIZE 50 -> moved to map.h
 // actual global vars
 bool app_running = true;
-int map[5][5];
+// int map[5][5]; -> updated to something less hardCoded
+// eventually if i want to design complex mazes without coding them in C++,
+// the standard trick is to write a helper function that reads a .txt file
+// line by line (using std::ifstream). I can literally "draw" your maze in
+// a text file using Notepad (with 1s and 0s) and have my program load it!
+int map[MAP_HEIGHT][MAP_WIDTH];
 
 // Player player = { 0, 0 };
-Player player = { {1.5f, 1.5f}, 0.0f };
+Player player = { {1.5f * 5, 1.5f}, 45.0f };
+
 void checkEvents(SDL_Event event) {
     while (SDL_PollEvent(&event)) { // loop for events
         switch(event.type) {
@@ -47,7 +53,7 @@ void drawPlayer(SDL_Renderer *prenderer, Player player) {
     SDL_RenderFillRect(prenderer, &player_rect);
 }
 
-
+// Main loop for main function that runs and updates everything
 void mainLoop(SDL_Renderer *prenderer, SDL_Window *pwindow, Ray& ray, Player& player) {
     // Counter to create more Shapes or objects    
     while (app_running) {   // Main loop for running GUI
@@ -59,6 +65,9 @@ void mainLoop(SDL_Renderer *prenderer, SDL_Window *pwindow, Ray& ray, Player& pl
         // Clear the screen (Paint it black to erase the previous frame)
         SDL_SetRenderDrawColor(prenderer, 0, 0, 0, 255);
         SDL_RenderClear(prenderer);
+
+        // Draws map
+        drawMap(prenderer, map);
 
         // Draw the Player
         drawPlayer(prenderer, player);

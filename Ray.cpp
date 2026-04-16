@@ -53,8 +53,8 @@ void Ray::calcuateMath(float angle) {
     this->dir.y = SDL_sin(rads);
 
     // Set Delta Distaances
-    this->deltaDist.x = (dir.x == 0) ? 1e30 : SDL_abs(1.0f / dir.x);
-    this->deltaDist.y = (dir.y == 0) ? 1e30 : SDL_abs(1.0f / dir.y);
+    this->deltaDist.x = (dir.x == 0) ? 1e30 : fabsf(1.0f / dir.x);
+    this->deltaDist.y = (dir.y == 0) ? 1e30 : fabsf(1.0f / dir.y);
 }
 
 
