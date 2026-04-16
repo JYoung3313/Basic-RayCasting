@@ -14,7 +14,7 @@
 
 // Global for player_pov
 #define PLAYER_POV 90
-
+ 
 // Globals for Color
 // Global for cells
 // #define CELL_SIZE 50 -> moved to map.h
